@@ -22,10 +22,12 @@ def beranda():
         nama = request.form.get("nama", "").strip()[:50]
     
     sekarang = datetime.now()
-    waktu_str = sekarang.strftime("%d-%m-%Y %H:%M:%S")
-    salam_str = salam_waktu(sekarang.hour)
-    
-    return render_template("index.html", nama=nama, waktu=waktu_str, salam=salam_str)
+    return render_template(
+        "index.html", 
+        nama=nama, 
+        waktu=sekarang.strftime("%d-%m-%Y %H:%M:%S"), 
+        salam=salam_waktu(sekarang.hour)
+    )
 
 @app.route("/tentang")
 def tentang():
